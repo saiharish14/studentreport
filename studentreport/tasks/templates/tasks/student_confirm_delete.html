@@ -1,0 +1,49 @@
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(to right, #e0f7fa, #80deea);
+    }
+
+    .confirm-box {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 500px;
+        margin: 40px auto;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .confirm-box p {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .button-link, .confirm-box button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        margin: 5px;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .button-link:hover, .confirm-box button:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="confirm-box">
+    <h2>Confirm Delete</h2>
+    <p>Are you sure you want to delete "{{ student.name }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+    </form>
+    <a class="button-link" href="{% url 'student_list' %}">Cancel</a>
+</div>
+{% endblock %}

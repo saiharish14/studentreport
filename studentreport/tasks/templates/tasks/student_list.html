@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Report System</title>
+  <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: radial-gradient(circle at top left, #fff8e1, #ffe082);
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 1000px;
+        margin: 30px auto;
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h1 {
+        text-align: center;
+        color: #ff6f00;
+    }
+
+    .add-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 5px;
+        text-decoration: none;
+        margin-bottom: 15px;
+        display: inline-block;
+    }
+
+    .add-btn:hover {
+        background-color: #0056b3;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th, td {
+        padding: 12px;
+        border: 1px solid #ccc;
+        text-align: center;
+    }
+
+    th {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .action-btn {
+        background-color: #007bff;
+        color: white;
+        padding: 6px 10px;
+        border-radius: 4px;
+        text-decoration: none;
+        margin-right: 5px;
+    }
+
+    .action-btn:hover {
+        background-color: #0056b3;
+    }
+
+    .filter-form {
+        margin-bottom: 20px;
+    }
+
+    .filter-form input {
+        padding: 6px;
+        margin-right: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+    }
+
+    .filter-form button {
+        padding: 6px 12px;
+        background-color: #28a745;
+        border: none;
+        color: white;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .filter-form button:hover {
+        background-color: #1e7e34;
+    }
+
+    footer {
+        text-align: center;
+        margin-top: 30px;
+        color: #666;
+        font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Student Report System</h1>
+
+    <form method="get" class="filter-form">
+        <label>Filter by Minimum Marks: </label>
+        <input type="number" name="min_marks" placeholder="Enter min marks" value="{{ request.GET.min_marks }}">
+        <button type="submit">Filter</button>
+        <a class="add-btn" href="{% url 'student_list' %}">Clear</a>
+    </form>
+
+    <a class="add-btn" href="{% url 'add_student' %}">Add Student</a>
+
+    <table>
+        <tr>
+            <th>Roll No</th>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Class</th>
+            <th>Marks</th>
+            <th>Actions</th>
+        </tr>
+        {% for student in students %}
+            {% if not request.GET.min_marks or student.marks|floatformat >= request.GET.min_marks|floatformat %}
+            <tr>
+                <td>{{ student.roll_number }}</td>
+                <td>{{ student.name }}</td>
+                <td>{{ student.age }}</td>
+                <td>{{ student.student_class }}</td>
+                <td>{{ student.marks }}</td>
+                <td>
+                    <a class="action-btn" href="{% url 'edit_student' student.pk %}">Edit</a>
+                    <a class="action-btn" href="{% url 'delete_student' student.pk %}">Delete</a>
+                </td>
+            </tr>
+            {% endif %}
+        {% empty %}
+        <tr><td colspan="6">No students found.</td></tr>
+        {% endfor %}
+    </table>
+</div>
+
+<footer>© 2025 StudentReport App</footer>
+
+</body>
+</html>

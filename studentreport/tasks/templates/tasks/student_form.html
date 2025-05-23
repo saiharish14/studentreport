@@ -1,0 +1,64 @@
+
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(to bottom right, #fce4ec, #f8bbd0);
+    }
+
+    .form-container {
+        background-color: #ffffff;
+        padding: 25px;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #c2185b;
+    }
+
+    form {
+        margin-top: 15px;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .button-link {
+        display: inline-block;
+        margin-top: 10px;
+        background-color: #007bff;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .button-link:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="form-container">
+    <h2>{{ form.instance.pk|yesno:"Edit Student,Add Student" }}</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Save</button>
+    </form>
+    <a class="button-link" href="{% url 'student_list' %}">Back to List</a>
+</div>
+{% endblock %}

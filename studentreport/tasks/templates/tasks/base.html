@@ -1,0 +1,88 @@
+{% extends 'student_confirm_delete.html' %}
+
+<html>
+<head>
+  <title>Student Report</title>
+  <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: radial-gradient(circle, #e3f2fd, #90caf9);
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #007bff;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    main {
+        padding: 20px;
+        max-width: 800px;
+        margin: auto;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+        text-align: center;
+        padding: 15px;
+        background-color: #f1f1f1;
+        color: #666;
+        margin-top: 40px;
+    }
+
+    a.button {
+        background-color: #007bff;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 5px;
+        text-decoration: none;
+        display: inline-block;
+        margin: 5px 0;
+    }
+
+    a.button:hover {
+        background-color: #0056b3;
+    }
+
+    button {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 10px 16px;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+  </style>
+
+  {% block extra_styles %}
+  <!-- Page-specific internal CSS can be inserted here -->
+  {% endblock %}
+</head>
+<body>
+
+  <header>
+      <h1>Student Report System</h1>
+  </header>
+
+  <main>
+      {% block content %}
+      <!-- Page content will be injected here -->
+      {% endblock %}
+  </main>
+
+  <footer>
+      <p>&copy; 2025 StudentReport App</p>
+  </footer>
+
+</body>
+</html>

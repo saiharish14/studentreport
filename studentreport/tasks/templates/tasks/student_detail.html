@@ -1,0 +1,63 @@
+
+
+{% block content %}
+<style>
+    body {
+        background: radial-gradient(circle, #f1f8e9, #aed581);
+    }
+
+    .student-detail {
+        background-color: #ffffff;
+        padding: 20px;
+        border-radius: 10px;
+        max-width: 600px;
+        margin: auto;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+        text-align: center;
+        color: #33691e;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    li {
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
+
+    strong {
+        color: #2e7d32;
+    }
+
+    .button-link {
+        display: inline-block;
+        margin-top: 15px;
+        background-color: #007bff;
+        color: white;
+        padding: 8px 14px;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+
+    .button-link:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="student-detail">
+    <h2>Student Details</h2>
+    <ul>
+        <li><strong>Roll Number:</strong> {{ student.roll_number }}</li>
+        <li><strong>Name:</strong> {{ student.name }}</li>
+        <li><strong>Age:</strong> {{ student.age }}</li>
+        <li><strong>Class:</strong> {{ student.student_class }}</li>
+        <li><strong>Marks:</strong> {{ student.marks }}</li>
+    </ul>
+    <a class="button-link" href="{% url 'student_list' %}">Back to List</a>
+</div>
+{% endblock %}
